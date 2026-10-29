@@ -11,3 +11,22 @@ Servicio (variante)|product.product|product_product|product_tmpl_id, default_cod
 Servicio (plantilla)|product.template|product_template|name, type = "service", list_price| id| --| One2many a product_variant_ids(1:N variantes)|
 Zona comercial|x_zona_comercial| x_zona_comercial|x_name, x_codigo, x_descripcion, x_active| id| --| 1:N clientes |
 |
+
+### Consulta 1 con el ORM: pedidos confirmados agrupados por zona comercial
+Modelo: sale.order · Dominio: [('state', '=', 'sale')] · Método: search + recorrido de relaciones
+
+```
+pedidos = env['sale.order'].search([('state', '=', 'sale')])totales = {}for pedido in pedidos: zona = pedido.x_zona_comercial_id.x_name or 'Sin zona' datos = totales.setdefault(zona, [0, 0.0]) datos[0] += 1 datos[1] += pedido.amount_untaxedlineas = [ '%s: %d pedidos · %.2f €' % (zona, datos[0], datos[1]) for zona, datos in sorted(totales.items(), key=lambda x: x[1][1], reverse=True)]action = { 'type': 'ir.actions.client', 'tag': 'display_notification', 'params': { 'title': 'Ventas por zona (ORM)', 'message': ' | '.join(lineas),
+Consulta
+Se acepta
+Es error
+4
+LOWER(rp.name) LIKELOWER('%web%')
+;
+amount_total
+comoimporte si se justifica
+Poner la condición del total enWHERE (filtra pedidos, no clientes);usar LIKE, que distingue mayúsculas
+Solución docente · Módulo de análisis en Odoo 19
+Page 14 of 24
+'sticky': True, 'type': 'info', },}
+```
