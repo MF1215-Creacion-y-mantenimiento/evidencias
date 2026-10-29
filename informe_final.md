@@ -256,7 +256,7 @@ action = {
 | Documentación de PostgreSQL 16 · The Information Schema | tables, columns | Consultas V1 a V3 |
 | Documentación de PostgreSQL 16 · Functions and Operators | date_trunc, AT TIME ZONE, ILIKE | Consultas C2 y C4 |
 
-[Añadir la URL exacta de cada página consultada.]
+
 
 ---
 
